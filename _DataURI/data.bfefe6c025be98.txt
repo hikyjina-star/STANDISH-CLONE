@@ -1,0 +1,1 @@
+chrome-extension://gghdfkafnhfpaooiolhncejnlgglhkhe/src/pages/content/index.js

@@ -1,0 +1,99 @@
+
+/* BOUTON POSTULER EN MOBILE */
+
+@media only screen and (max-width:1024px){
+.bouton-postuler-mobile{
+    position: sticky;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    z-index: 9 !important;
+    display: none;
+}
+}
+@media only screen and (min-width:1025px){
+.bouton-postuler-mobile{
+    display: none;
+}
+}
+
+
+
+
+/* LOOP DANS UNE PAGE */
+
+.standish-loop-container.standish_emplois .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    padding-top: 24px;
+    border-bottom: solid 1px var(--global-palette3);
+}
+.standish-loop-container.standish_emplois .title {
+    display: flex;
+    justify-content: space-between;
+/*    align-items: center;*/
+}
+.standish-loop-container.standish_emplois .image {
+    max-width: 30%;
+    margin-right: 35px;
+}
+.standish-loop-container.standish_emplois .texte {
+    margin-right: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+        flex: 1;
+}
+.standish-loop-container.standish_emplois h3 {
+    margin: 0;
+}
+.standish-loop-container.standish_emplois .title h3 a {
+    font-size: var(--wp--preset--font-size--large);
+    font-family: var(--global-heading-font-family);
+    color: var(--global-palette3);
+    text-decoration: none;
+}
+.standish-loop-container.standish_emplois span{
+	margin-right: 20px;
+    color: var(--global-palette3);
+}
+.standish-loop-container.standish_emplois .button-emplois{
+    min-width: 20%;
+    justify-content: end;
+    display: flex;
+    }
+.standish-loop-container.standish_emplois .button-emplois a {
+    background: var(--global-palette3);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+}
+.standish-loop-container.standish_emplois .button-emplois a:hover {
+    background: var(--global-palette2);
+}
+@media only screen and (max-width:768px){
+    .standish-loop-container.standish_emplois .wrapper {
+	    display: block;
+	    padding-bottom: 50px;
+	}
+    .standish-loop-container.standish_emplois .title {
+        display: block;
+    }
+    .standish-loop-container.standish_emplois .image {
+        max-width: 100%;
+        margin-bottom: 35px;
+    }
+    .standish-loop-container.standish_emplois .texte {
+        margin-right: inherit;
+    }
+	.standish-loop-container.standish_emplois .title a {
+	    font-size: var(--wp--preset--font-size--medium);
+	}
+    .standish_emplois .button-emplois{
+        margin-top: 35px;
+        justify-content: start !important;
+    }
+}

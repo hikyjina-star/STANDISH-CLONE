@@ -1,0 +1,31 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * scale-variable:
+ *   - http://typekit.com/eulas/000000000000000077542086
+ * zuume:
+ *   - http://typekit.com/eulas/0000000000000000774d3f55
+ *
+ * © 2009-2026 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2026-04-15 16:06:18 UTC"}*/
+
+@import url("https://p.typekit.net/p.css?s=1&k=lyk5jnc&ht=tk&f=52674.55609&a=89419503&app=typekit&e=css");
+
+@font-face {
+font-family:"zuume";
+src:url("https://use.typekit.net/af/e2da49/0000000000000000774d3f55/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/e2da49/0000000000000000774d3f55/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/e2da49/0000000000000000774d3f55/31/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+font-family:"scale-variable";
+src:url("https://use.typekit.net/af/60a102/000000000000000077542086/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/60a102/000000000000000077542086/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/60a102/000000000000000077542086/31/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:200 900;font-stretch:normal;
+}
+
+.tk-zuume { font-family: "zuume",sans-serif; }
+.tk-scale-variable { font-family: "scale-variable",sans-serif; }

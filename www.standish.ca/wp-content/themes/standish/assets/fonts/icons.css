@@ -1,0 +1,274 @@
+@font-face {
+  font-family: 'icomoon';
+  src:
+    url('icomoon.woff2?hf54sx') format('woff2'),
+    url('icomoon.ttf?hf54sx') format('truetype'),
+    url('icomoon.woff?hf54sx') format('woff'),
+    url('icomoon.svg?hf54sx#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'standish-icons';
+  src:
+    url('icomoon.woff2?hf54sx') format('woff2'),
+    url('icomoon.ttf?hf54sx') format('truetype'),
+    url('icomoon.woff?hf54sx') format('woff'),
+    url('icomoon.svg?hf54sx#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-directions:before {
+  content: "\e932";
+}
+
+.icon-language:before {
+  content: "\e931";
+}
+
+.icon-search:before {
+  content: "\e927";
+}
+
+.icon-location:before {
+  content: "\e91b";
+}
+
+.icon-place_outline:before {
+  content: "\e924";
+}
+
+.icon-max_people:before {
+  content: "\eca2";
+}
+
+.icon-person:before {
+  content: "\eca3";
+}
+
+.icon-groups:before {
+  content: "\e908";
+}
+
+.icon-people:before {
+  content: "\e909";
+}
+
+.icon-schedule:before {
+  content: "\e90a";
+}
+
+.icon-date_check:before {
+  content: "\eb99";
+}
+
+.icon-event:before {
+  content: "\e905";
+}
+
+.icon-calendar_month:before {
+  content: "\e913";
+}
+
+.icon-date_range:before {
+  content: "\eb45";
+}
+
+.icon-square_foot:before {
+  content: "\ecb9";
+}
+
+.icon-bedrooms:before {
+  content: "\ecaf";
+}
+
+.icon-beds:before {
+  content: "\ecb0";
+}
+
+.icon-bathrooms:before {
+  content: "\ecb1";
+}
+
+.icon-bathrooms-2:before {
+  content: "\ecb8";
+}
+
+.icon-mail:before {
+  content: "\ecb3";
+}
+
+.icon-tel_outline:before {
+  content: "\e910";
+}
+
+.icon-tel:before {
+  content: "\ecb2";
+}
+
+.icon-copy:before {
+  content: "\e90f";
+}
+
+.icon-inscription:before {
+  content: "\e929";
+}
+
+.icon-pdf:before {
+  content: "\e911";
+}
+
+.icon-open_in_new:before {
+  content: "\e926";
+}
+
+.icon-mozaik:before {
+  content: "\e920";
+}
+
+.icon-microsoftoffice:before {
+  content: "\e921";
+}
+
+.icon-offer:before {
+  content: "\eca1";
+}
+
+.icon-flocon:before {
+  content: "\e928";
+}
+
+.icon-favorite:before {
+  content: "\ecb4";
+}
+
+.icon-settings:before {
+  content: "\e90b";
+}
+
+.icon-help:before {
+  content: "\e998";
+}
+
+.icon-my_location:before {
+  content: "\e925";
+}
+
+.icon-filter-settings:before {
+  content: "\ecb6";
+}
+
+.icon-filters:before {
+  content: "\ecb5";
+}
+
+.icon-options:before {
+  content: "\e954";
+}
+
+.icon-check_circle:before {
+  content: "\e907";
+}
+
+.icon-check:before {
+  content: "\e906";
+}
+
+.icon-add:before {
+  content: "\e912";
+}
+
+.icon-remove:before {
+  content: "\e914";
+}
+
+.icon-close:before {
+  content: "\ecb7";
+}
+
+.icon-delete:before {
+  content: "\e930";
+}
+
+.icon-long-down-arrow:before {
+  content: "\e903";
+}
+
+.icon-long-up-arrow:before {
+  content: "\e904";
+}
+
+.icon-chevron_left:before {
+  content: "\e90d";
+}
+
+.icon-chevron_right:before {
+  content: "\e90e";
+}
+
+.icon-chevron_up:before {
+  content: "\e915";
+}
+
+.icon-chevron_down:before {
+  content: "\e916";
+}
+
+.icon-circle_left:before {
+  content: "\e917";
+}
+
+.icon-circle_right:before {
+  content: "\e918";
+}
+
+.icon-circle_up:before {
+  content: "\e919";
+}
+
+.icon-circle_down:before {
+  content: "\e91a";
+}
+
+.icon-arrow_circle_left:before {
+  content: "\e91c";
+}
+
+.icon-arrow_circle_right:before {
+  content: "\e91d";
+}
+
+.icon-arrow_back:before {
+  content: "\e91e";
+}
+
+.icon-arrow_forward:before {
+  content: "\e91f";
+}
+
+.icon-arrow_circle_left_light:before {
+  content: "\e922";
+}
+
+.icon-arrow_circle_right_light:before {
+  content: "\e923";
+}
