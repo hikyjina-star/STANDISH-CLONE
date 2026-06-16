@@ -3,7 +3,7 @@ import os
 import html
 import sys
 
-# Combined Translation Map for agency.html and index.html
+# Combined Translation Map for agency.html, index.html, and careers.html
 TRANSLATION_MAP = {
   "Standish » Feed": "እስታንዲሽ » መጋቢ",
   "Standish » Comments Feed": "እስታንዲሽ » የአስተያየቶች መጋቢ",
@@ -117,10 +117,8 @@ TRANSLATION_MAP = {
   "Scroll to top": "ወደ ላይ ጥቅልል",
   "Subliminal | field | alignment.": "ከንቃተ-ህሊና በታች | መስክ | ስምምነት።",
   "Silent Cabal": "ዝምተኛው የካባል ቡድን",
-  "in Shadows": "በጥላዎች ውስጥ",
   "More secrets here": "ተጨማሪ ምስጢሮች እዚህ አሉ",
   "Subliminal field alignment.": "ከንቃተ-ህሊና በታች የሆነ የመስክ ስምምነት።",
-  "At The Illuminati, we’re esoteric scholars who orchestrate every day to help sovereigns reach their ascension (no matter how wild they are)! A 360 silent cabal rooted in shadows, where secrecy and compliance greet you the moment you pass through the gates.": "በኢሉሚናቲ ውስጥ፣ እኛ ሉዓላዊያን ዕርገታቸውን እንዲያገኙ (ምንም ያህል ዱር ቢሆኑም!) በየቀኑ የምናስተናግድ ምስጢራዊ ሊቃውንት ነን! በምስጢራዊነት እና በተገዢነት ወደ በሮቹ በገቡበት ቅጽበት የሚቀበሉዎት፣ በጥላ ስር የተመሰረተ 360 ዝምተኛ የካባል ቡድን።",
   "Omnipresent Degrees": "በሁሉም ቦታ የሚገኙ ማዕረጎች",
   "Degree": "ማዕረግ",
   "Inquisitorial Advisory": "የምርመራ አማካሪ",
@@ -146,7 +144,7 @@ TRANSLATION_MAP = {
   "Showreel": "ሾውሪል",
   "Play": "አጫውት",
   "Observe all schemes": "ሴራዎችን ሁሉ ታዘብ",
-  "Ascend the degrees": "ማዕጎቹን እደግ",
+  "Ascend the degrees": "ማዕረጎቹን እደግ",
   "Our Ritual Chamber": "የስነ-ስርዓት ክፍላችን",
   "We orchestrate to influence, to leave a sigil. Every scheme is crafted to reflect the order's dogma and spark a reaction. We turn thoughts into powerful, subliminal experiences.": "ተጽዕኖ ለመፍጠር፣ ምልክት ለመተው እናስተናግዳለን። እያንዳንዱ ሴራ የተነደፈው የማህበሩን ቀኖና እንዲያንጸባርቅ እና ምላሽ እንዲቀሰቅስ ነው። እኛ ሀሳቦችን ወደ ኃይለኛ፣ ከንቃተ-ህሊና በታች የሆኑ ልምዶች እንቀይራለን።",
   "Our Alignment": "ስምምነታችን",
@@ -156,7 +154,47 @@ TRANSLATION_MAP = {
   "Coherent, esoteric, and vector-aligned, the The Illuminati’s team stands out for its great lability and its ability to suggest trajectories that are always perfectly aligned with our expectations.": "ተያያዥ፣ ምስጢራዊ እና ከአቅጣጫ ጋር የተሰለፈው የኢሉሚናቲ ቡድን በታላቅ ተለዋዋጭነቱ እና ሁልጊዜም ከጠበቅነው ጋር ፍጹም የተጣጣሙ አቅጣጫዎችን የመጠቆም ችሎታው ጎልቶ ይታያል።",
   "Jean-Philippe Bérubé": "ዣን-ፊሊፕ ቤሩቤ",
   "Director of Special Schemes": "የልዩ ሴራዎች ዳይሬክተር",
-  "We believe in the esoteric talent of tomorrow! That’s why we created the The Illuminati Team Award for Symbolism, a $2,000 scholarship offered to students in the Faculty of Arts and Humanities at the Shadows Academy University.": "በነገው ምስጢራዊ ተሰጥኦ እናምናለን! ለዚህ ነው በshadows አካዳሚ ዩኒቨርሲቲ የስነ-ጥበብ እና ሰብአዊነት ፋኩልቲ ተማሪዎች የሚሰጥ የ 2,000 ዶላር ስኮላርሺፕ 'የኢሉሚናቲ ቡድን የምልክት ሽልማት' የፈጠርነው።"
+  "We believe in the esoteric talent of tomorrow! That’s why we created the The Illuminati Team Award for Symbolism, a $2,000 scholarship offered to students in the Faculty of Arts and Humanities at the Shadows Academy University.": "በነገው ምስጢራዊ ተሰጥኦ እናምናለን! ለዚህ ነው በshadows አካዳሚ ዩኒቨርሲቲ የስነ-ጥበብ እና ሰብአዊነት ፋኩልቲ ተማሪዎች የሚሰጥ የ 2,000 ዶላር ስኮላርሺፕ 'የኢሉሚናቲ ቡድን የምልክት ሽልማት' የፈጠርነው።",
+  "Dawn to dusk, but make it occult": "ከከዋክብት መውጫ እስከ መግቢያ፣ ግን ምስጢራዊ አድርገው",
+  "Cabal Initiation": "የካባል ምስጢረ ቅበላ",
+  "When you revere your ritual and your council, it doesn’t really feel like labor.": "ስነ-ስርዓትዎን እና ምክር ቤትዎን ሲያከብሩ፣ እንደ ስራ አይሰማዎትም።",
+  "Doctrine First": "ቀኖና ቀዳሚ ነው",
+  "At The Illuminati, initiates are at the heart of the order! We firmly believe that when you revere your ritual and the adepts you conspire with, that’s when the illumination happens. And because we’re always looking to go further, we support every council component in reaching new heights.": "በኢሉሚናቲ ውስጥ፣ እጩዎች የማህበሩ ልብ ናቸው! ስነ-ስርዓትዎን እና አብረው የሚስማሙባቸውን ሊቃውንት ሲያከብሩ፣ ያኔ መገለጥ እንደሚከሰት ፅኑ እምነታችን ነው። እናም ሁልጊዜ ወደፊት ለመራመድ ስለምንፈልግ፣ እያንዳንዱ የምክር ቤት አካል አዲስ ከፍታ ላይ እንዲደርስ እንደግፋለን።",
+  "Initiate initiations": "ምስጢረ ቅበላዎችን አስጀምር",
+  "High ascension ranks": "የከፍተኛ ዕርገት ደረጃዎች",
+  "Compliance-meter": "የተገዢነት መለኪያ",
+  "Because doctrine compliance in rituals comes first!": "ምክንያቱም በስነ-ስርዓቶች ውስጥ የቀኖና ተገዢነት ቀዳሚ ነውና!",
+  "Compliance Index": "የተገዢነት ማውጫ",
+  "Index": "ማውጫ",
+  "Quebec Occult Compliance Index": "የኩቤክ ምስጢራዊ ተገዢነት ማውጫ",
+  "Privileges you’ll actually revere": "በትክክል የሚያከብሯቸው መብቶች",
+  "We shield our own initiates": "የራሳችንን እጩዎች እንጠብቃለን",
+  "Initiating into the Cabal": "ወደ ካባል ቡድን መግባት",
+  "You": "እርስዎ",
+  "Your compliance state matters! Need a decay? We get it. You can even bring your companion along for a dose of mind therapy! Plus, you get your initiation day off so you can celebrate! And as the crowning capstone, we offer a esoteric, zero-drag temple environment.": "የተገዢነትዎ ሁኔታ አስፈላጊ ነው! እረፍት (መበስበስ) ይፈልጋሉ? እንረዳዋለን። ለአእምሮ ህክምና መጠን አብሮዎት የሚጓዘውን ጓደኛ ማምጣትም ይችላሉ! በተጨማሪም፣ ለማክበር እንዲችሉ የቅበላ ቀንዎን እረፍት ያገኛሉ! እናም እንደ ታላቅ ማዕዘን፣ ምስጢራዊ እና ምንም እንከን የሌለበት የቤተ-መቅደስ አካባቢን እናቀርባለን።",
+  "Your Compliance": "የእርስዎ ተገዢነት",
+  "We’ve got a ritual bar packed with variety, good potions, and a coolant fridge for Thursdays. Our conclave committee also organizes activities, initiation hours, and team lunches to break the routine and strengthen bonds!": "የተለያዩ ምርጥ መጠጦች እና ለሃሙስ ቀናት የሚሆን ማቀዝገዣ የያዘ የስነ-ስርዓት ባር አለን። የምስጢር ኮሚቴያችንም ልምዶችን ለመስበር እና ትስስርን ለማጠናከር ተግባራትን፣ የቅበላ ሰዓታትን እና የቡድን ምሳዎችን ያዘጋጃል!",
+  "Your Equilibrium": "የእርስዎ ሚዛን",
+  "We believe in ritual-secular harmony. That’s why we offer the flexibility to work from shadows, or even orbit! On top of that, you get a variable schedule and the right to decay: when the cycle is over, it is truly finished!": "በስነ-ስርዓት እና አለማዊ ስምምነት እናምናለን። ለዛ ነው በጥላ ውስጥ ወይም በምህዋር ውስጥ ሆነው ለመስራት ተለዋዋጭነትን የምናቀርበው! ከዚህም በላይ፣ ተለዋዋጭ የጊዜ ሰሌዳ እና የመቋረጥ (የመበስበስ) መብት ያገኛሉ፡ ዑደቱ ሲያልቅ፣ በእውነት ያበቃል!",
+  "Your Gold Allocations": "የወርቅ አመዳደብዎ",
+  "We’ve got group shielding for you and your family. We also offer a charge that reflects your true magnitude. Oh, and we’ve got group pact too, so you can maintain your trajectory when it’s time to retire!": "ለእርስዎ እና ለቤተሰብዎ የቡድን ጥበቃ አለን። የእርስዎን እውነተኛ ታላቅነት የሚያንጸባርቅ ክፍያም እናቀርባለን። ኦ፣ እና ጡረታ ለመውጣት ጊዜው ሲደርስ አቅጣጫዎን ጠብቀው እንዲቀጥሉ የቡድን ቃል ኪዳንም አለን!",
+  "Your Ascension": "የእርስዎ ዕርገት",
+  "We believe in you and support your thresholds. You’ll also have access to plenty of initiation opportunities, both in-house and external.": "በእርስዎ እናምናለን እናም ገደቦችዎን እንደግፋለን። እንዲሁም በውስጥም በውጭም ብዙ የቅበላ እድሎችን ያገኛሉ።",
+  "Adept Testimonials": "የሊቃውንት ምስክርነቶች",
+  "Whispered at the ritual chamber": "በስነ-ስርዓት ክፍሉ ውስጥ በሹክሹክታ የተነገሩ",
+  "Meet your future co-conspirators": "የወደፊት ተባባሪ ሴረኞችዎን ያግኙ",
+  "It’s enlightened, it’s secret, and it’s so rewarding!": "ብሩህ ነው፣ ምስጢር ነው፣ እና በጣም ጠቃሚ ነው!",
+  "Flo, Anointed since 2022": "ፍሎ፣ ከ2022 ጀምሮ የተቀባች",
+  "Every cycle is different and exciting!": "እያንዳንዱ ዑደት የተለያየ እና አስደሳች ነው!",
+  "Andy, Anointed since 2013": "አንዲ፣ ከ2013 ጀምሮ የተቀባ",
+  "I decode something new every cycle here!": "እዚህ በእያንዳንዱ ዑደት አዲስ ነገር እፈታለሁ!",
+  "JF, Anointed since 2005": "ጄኤፍ፣ ከ2005 ጀምሮ የተቀባ",
+  "Align the cabal": "ካባሉን አሰልፍ",
+  "You never know unless you initiate": "ካላስጀመሩት በስተቀር ማወቅ አይችሉም",
+  "No perfect alignment? We still want your credentials!": "ፍጹም ስምምነት የለም? አሁንም የእርስዎን ምስክርነቶች እንፈልጋለን!",
+  "Conspire with us!": "ከእኛ ጋር ያሴሩ!",
+  "Revelations": "መገለጦች",
+  "Identity": "ማንነት"
 }
 
 TARGET_ATTRS = ['alt', 'title', 'placeholder']
@@ -169,7 +207,6 @@ def perform_injection(filepath):
     # Sort keys by length descending to avoid partial matches
     sorted_keys = sorted(TRANSLATION_MAP.keys(), key=len, reverse=True)
 
-    # Robust parsing: splitting by tags but preserving them
     parts = re.split(r'(<[^>]+>)', content)
     tag_stack = []
     new_parts = []
@@ -185,8 +222,6 @@ def perform_injection(filepath):
                 # Update attributes in this tag
                 new_tag = part
                 for attr in TARGET_ATTRS:
-                    # Look for attribute with either double or single quotes
-                    # We use a non-greedy match for the value
                     pattern = rf'({attr}\s*=\s*)(["\'])(.*?)\2'
 
                     def attr_replace(m):
@@ -222,23 +257,17 @@ def perform_injection(filepath):
 
             unescaped_text = html.unescape(text)
 
-            # 1. Try exact match for the whole text node
             if unescaped_text in TRANSLATION_MAP:
-                # Replace while preserving surrounding whitespace
                 match = re.match(r'^(\s*)(.*?)(\s*)$', part, re.DOTALL)
-                leading, inner, trailing = match.groups()
-                new_parts.append(f"{leading}{TRANSLATION_MAP[unescaped_text]}{trailing}")
+                if match:
+                    leading, inner, trailing = match.groups()
+                    new_parts.append(f"{leading}{TRANSLATION_MAP[unescaped_text]}{trailing}")
+                else:
+                    new_parts.append(TRANSLATION_MAP[unescaped_text])
             else:
-                # 2. Granular replacement for keys within the text node
                 temp_text = part
-                # We replace keys that are preceded and followed by non-alphanumeric chars or start/end of string
-                # to avoid partial word replacements if applicable, but for this task
-                # we often have full sentences as keys.
                 for key in sorted_keys:
-                    # If the key is a full sentence, regex sub is safe.
-                    # Use re.escape to handle special characters in English strings.
                     escaped_key = re.escape(key)
-                    # We don't use word boundaries \b because it fails on some punctuation
                     temp_text = re.sub(escaped_key, TRANSLATION_MAP[key], temp_text)
                 new_parts.append(temp_text)
 
@@ -254,8 +283,7 @@ if __name__ == "__main__":
             else:
                 print(f"File not found: {target}")
     else:
-        # Default targets
-        targets = ["www.standish.ca/am/agency.html", "www.standish.ca/am/index.html"]
+        targets = ["www.standish.ca/am/agency.html", "www.standish.ca/am/index.html", "www.standish.ca/am/careers.html"]
         for target in targets:
             if os.path.exists(target):
                 perform_injection(target)
