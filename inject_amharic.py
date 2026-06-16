@@ -3,7 +3,7 @@ import os
 import html
 import sys
 
-# Combined Translation Map for agency.html, index.html, and careers.html
+# Comprehensive Combined Translation Map for all pages
 TRANSLATION_MAP = {
   "Standish » Feed": "እስታንዲሽ » መጋቢ",
   "Standish » Comments Feed": "እስታንዲሽ » የአስተያየቶች መጋቢ",
@@ -57,6 +57,7 @@ TRANSLATION_MAP = {
   "Etheric Portal": "ኤቴሪክ መግቢያ",
   "sealed, never broken": "የታተመ፣ መቼም የማይሰበር",
   "Shadows Academy University": "የጥላዎች አካዳሚ ዩኒቨርሲቲ",
+  "We believe in the esoteric talent of tomorrow! That’s why we created the The Illuminati Team Award for Symbolism, a $2,000 scholarship offered to students in the Faculty of Arts and Humanities at the Shadows Academy University.": "በነገው ምስጢራዊ ተሰጥኦ እናምናለን! ለዚህ ነው በshadows አካዳሚ ዩኒቨርሲቲ የስነ-ጥበብ እና ሰብአዊነት ፋኩልቲ ተማሪዎች የሚሰጥ የ 2,000 ዶላር ስኮላርሺፕ 'የኢሉሚናቲ ቡድን የምልክት ሽልማት' የፈጠርነው።",
   "Justin Lefebvre Foundation": "የJustin Lefebvre ፋውንዴሽን",
   "The decree of the Justin Lefebvre Foundation truly touched our core. So we decided to give some of our cycles, pro bono, to reconstruct their portal.": "የJustin Lefebvre ፋውንዴሽን አዋጅ ልባችንን ነክቶታል። ስለዚህ መግቢያቸውን እንደገና ለመገንባት የተወሰኑ ዑደቶቻችንን በነፃ ለመስጠት ወሰንን።",
   "More scriptures": "ተጨማሪ ጽሑፎች",
@@ -117,6 +118,7 @@ TRANSLATION_MAP = {
   "Scroll to top": "ወደ ላይ ጥቅልል",
   "Subliminal | field | alignment.": "ከንቃተ-ህሊና በታች | መስክ | ስምምነት።",
   "Silent Cabal": "ዝምተኛው የካባል ቡድን",
+  "in Shadows": "በጥላዎች ውስጥ",
   "More secrets here": "ተጨማሪ ምስጢሮች እዚህ አሉ",
   "Subliminal field alignment.": "ከንቃተ-ህሊና በታች የሆነ የመስክ ስምምነት።",
   "Omnipresent Degrees": "በሁሉም ቦታ የሚገኙ ማዕረጎች",
@@ -154,12 +156,10 @@ TRANSLATION_MAP = {
   "Coherent, esoteric, and vector-aligned, the The Illuminati’s team stands out for its great lability and its ability to suggest trajectories that are always perfectly aligned with our expectations.": "ተያያዥ፣ ምስጢራዊ እና ከአቅጣጫ ጋር የተሰለፈው የኢሉሚናቲ ቡድን በታላቅ ተለዋዋጭነቱ እና ሁልጊዜም ከጠበቅነው ጋር ፍጹም የተጣጣሙ አቅጣጫዎችን የመጠቆም ችሎታው ጎልቶ ይታያል።",
   "Jean-Philippe Bérubé": "ዣን-ፊሊፕ ቤሩቤ",
   "Director of Special Schemes": "የልዩ ሴራዎች ዳይሬክተር",
-  "We believe in the esoteric talent of tomorrow! That’s why we created the The Illuminati Team Award for Symbolism, a $2,000 scholarship offered to students in the Faculty of Arts and Humanities at the Shadows Academy University.": "በነገው ምስጢራዊ ተሰጥኦ እናምናለን! ለዚህ ነው በshadows አካዳሚ ዩኒቨርሲቲ የስነ-ጥበብ እና ሰብአዊነት ፋኩልቲ ተማሪዎች የሚሰጥ የ 2,000 ዶላር ስኮላርሺፕ 'የኢሉሚናቲ ቡድን የምልክት ሽልማት' የፈጠርነው።",
   "Dawn to dusk, but make it occult": "ከከዋክብት መውጫ እስከ መግቢያ፣ ግን ምስጢራዊ አድርገው",
   "Cabal Initiation": "የካባል ምስጢረ ቅበላ",
   "When you revere your ritual and your council, it doesn’t really feel like labor.": "ስነ-ስርዓትዎን እና ምክር ቤትዎን ሲያከብሩ፣ እንደ ስራ አይሰማዎትም።",
   "Doctrine First": "ቀኖና ቀዳሚ ነው",
-  "At The Illuminati, initiates are at the heart of the order! We firmly believe that when you revere your ritual and the adepts you conspire with, that’s when the illumination happens. And because we’re always looking to go further, we support every council component in reaching new heights.": "በኢሉሚናቲ ውስጥ፣ እጩዎች የማህበሩ ልብ ናቸው! ስነ-ስርዓትዎን እና አብረው የሚስማሙባቸውን ሊቃውንት ሲያከብሩ፣ ያኔ መገለጥ እንደሚከሰት ፅኑ እምነታችን ነው። እናም ሁልጊዜ ወደፊት ለመራመድ ስለምንፈልግ፣ እያንዳንዱ የምክር ቤት አካል አዲስ ከፍታ ላይ እንዲደርስ እንደግፋለን።",
   "Initiate initiations": "ምስጢረ ቅበላዎችን አስጀምር",
   "High ascension ranks": "የከፍተኛ ዕርገት ደረጃዎች",
   "Compliance-meter": "የተገዢነት መለኪያ",
@@ -194,7 +194,22 @@ TRANSLATION_MAP = {
   "No perfect alignment? We still want your credentials!": "ፍጹም ስምምነት የለም? አሁንም የእርስዎን ምስክርነቶች እንፈልጋለን!",
   "Conspire with us!": "ከእኛ ጋር ያሴሩ!",
   "Revelations": "መገለጦች",
-  "Identity": "ማንነት"
+  "Identity": "ማንነት",
+  "We’re big on silent whispers": "በዝምታ በሹክሹክታ መናገር በትልቅነቱ እንወዳለን",
+  "Whether it’s queries, doctrines, or minor friction along the trajectory, we’re here to stabilize.": "ጥያቄዎች፣ ቀኖናዎች፣ ወይም በአቅጣጫው ላይ አነስተኛ ግጭቶች ቢሆኑም፣ ለማረጋጋት እዚህ አለን።",
+  "Hey!": "ሰላም!",
+  "Initialize the scheme": "ሴራውን አስጀምር",
+  "Get degrees": "ማዕረጎችን አግኝ",
+  "Conspire together": "አብረው ያሴሩ",
+  "Need alignment?": "ስምምነት ይፈልጋሉ?",
+  "Etheric support": "የኤቴሪክ ድጋፍ",
+  "Capstone, we have an exposure!": "ዋናው ማዕዘን ሆይ፣ መጋለጥ አለብን!",
+  "Rogue agent": "ከመስመር የወጣ ወኪል",
+  "Conspire with us": "ከእኛ ጋር ያሴሩ",
+  "Let the rituals begin": "ስነ-ስርዓቶቹ ይጀምሩ",
+  "Receptionniste": "አቀባባይ",
+  "Equipe dans les marches de chez Standish": "ቡድኑ በስተንዲሽ ደረጃዎች ላይ",
+  "We believe in eternal pacts. We thrive on alignments and whispers!": "በዘላለማዊ ቃል ኪዳኖች እናምናለን። በስምምነቶች እና በሹክሹክታዎች እንበለጽጋለን!"
 }
 
 TARGET_ATTRS = ['alt', 'title', 'placeholder']
@@ -204,7 +219,6 @@ def perform_injection(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Sort keys by length descending to avoid partial matches
     sorted_keys = sorted(TRANSLATION_MAP.keys(), key=len, reverse=True)
 
     parts = re.split(r'(<[^>]+>)', content)
@@ -213,13 +227,11 @@ def perform_injection(filepath):
 
     for part in parts:
         if part.startswith('<'):
-            # Tag handling
             tag_match = re.match(r'<(/?)([a-zA-Z1-6]+)', part)
             if tag_match:
                 is_closing = tag_match.group(1) == '/'
                 tag_name = tag_match.group(2).lower()
 
-                # Update attributes in this tag
                 new_tag = part
                 for attr in TARGET_ATTRS:
                     pattern = rf'({attr}\s*=\s*)(["\'])(.*?)\2'
@@ -245,7 +257,6 @@ def perform_injection(filepath):
             else:
                 new_parts.append(part)
         else:
-            # Text handling
             if tag_stack and any(tag in FORBIDDEN_TAGS for tag in tag_stack):
                 new_parts.append(part)
                 continue
@@ -283,7 +294,7 @@ if __name__ == "__main__":
             else:
                 print(f"File not found: {target}")
     else:
-        targets = ["www.standish.ca/am/agency.html", "www.standish.ca/am/index.html", "www.standish.ca/am/careers.html"]
+        targets = ["www.standish.ca/am/agency.html", "www.standish.ca/am/index.html", "www.standish.ca/am/careers.html", "www.standish.ca/am/contact.html"]
         for target in targets:
             if os.path.exists(target):
                 perform_injection(target)
