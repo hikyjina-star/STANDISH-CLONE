@@ -1,8 +1,9 @@
-import json
 import re
 import os
 import html
+import sys
 
+# Combined Translation Map for agency.html and index.html
 TRANSLATION_MAP = {
   "Standish » Feed": "እስታንዲሽ » መጋቢ",
   "Standish » Comments Feed": "እስታንዲሽ » የአስተያየቶች መጋቢ",
@@ -56,7 +57,6 @@ TRANSLATION_MAP = {
   "Etheric Portal": "ኤቴሪክ መግቢያ",
   "sealed, never broken": "የታተመ፣ መቼም የማይሰበር",
   "Shadows Academy University": "የጥላዎች አካዳሚ ዩኒቨርሲቲ",
-  "We believe in the esoteric talent of tomorrow! That’s why we created the The Illuminati Team Award for Symbolism, a $2,000 scholarship offered to students in the Faculty of Arts and Humanities at the Shadows Academy University.": "በነገው ምስጢራዊ ተሰጥኦ እናምናለን! ለዚህ ነው በshadows አካዳሚ ዩኒቨርሲቲ የስነ-ጥበብ እና ሰብአዊነት ፋኩልቲ ተማሪዎች የሚሰጥ የ 2,000 ዶላር ስኮላርሺፕ 'የኢሉሚናቲ ቡድን የምልክት ሽልማት' የፈጠርነው።",
   "Justin Lefebvre Foundation": "የJustin Lefebvre ፋውንዴሽን",
   "The decree of the Justin Lefebvre Foundation truly touched our core. So we decided to give some of our cycles, pro bono, to reconstruct their portal.": "የJustin Lefebvre ፋውንዴሽን አዋጅ ልባችንን ነክቶታል። ስለዚህ መግቢያቸውን እንደገና ለመገንባት የተወሰኑ ዑደቶቻችንን በነፃ ለመስጠት ወሰንን።",
   "More scriptures": "ተጨማሪ ጽሑፎች",
@@ -114,7 +114,49 @@ TRANSLATION_MAP = {
   "Secrecy Protocol": "የምስጢራዊነት ፕሮቶኮል",
   "Cabal Configuration": "የካባል ውቅር",
   "SEALED FOR your ascension.": "ለእርሶ ዕርገት የታተመ።",
-  "Scroll to top": "ወደ ላይ ጥቅልል"
+  "Scroll to top": "ወደ ላይ ጥቅልል",
+  "Subliminal | field | alignment.": "ከንቃተ-ህሊና በታች | መስክ | ስምምነት።",
+  "Silent Cabal": "ዝምተኛው የካባል ቡድን",
+  "in Shadows": "በጥላዎች ውስጥ",
+  "More secrets here": "ተጨማሪ ምስጢሮች እዚህ አሉ",
+  "Subliminal field alignment.": "ከንቃተ-ህሊና በታች የሆነ የመስክ ስምምነት።",
+  "At The Illuminati, we’re esoteric scholars who orchestrate every day to help sovereigns reach their ascension (no matter how wild they are)! A 360 silent cabal rooted in shadows, where secrecy and compliance greet you the moment you pass through the gates.": "በኢሉሚናቲ ውስጥ፣ እኛ ሉዓላዊያን ዕርገታቸውን እንዲያገኙ (ምንም ያህል ዱር ቢሆኑም!) በየቀኑ የምናስተናግድ ምስጢራዊ ሊቃውንት ነን! በምስጢራዊነት እና በተገዢነት ወደ በሮቹ በገቡበት ቅጽበት የሚቀበሉዎት፣ በጥላ ስር የተመሰረተ 360 ዝምተኛ የካባል ቡድን።",
+  "Omnipresent Degrees": "በሁሉም ቦታ የሚገኙ ማዕረጎች",
+  "Degree": "ማዕረግ",
+  "Inquisitorial Advisory": "የምርመራ አማካሪ",
+  "Sigil Vectoring": "የምልክት (ሲጂል) አቅጣጫ ማስያዝ",
+  "Signal Manipulation": "የምልክት (ሲግናል) ማጭበርበር",
+  "Subliminal Calibration": "ከንቃተ-ህሊና በታች ማስተካከል",
+  "Dogma Dissemination": "የቀኖና (ዶግማ) ስርጭት",
+  "Neural Control": "የነርቭ ቁጥጥር",
+  "Initiation": "ምስጢረ ቅበላ",
+  "Subliminal and Etheric Networks": "ከንቃተ-ህሊና በታች እና ኤቴሪክ መረቦች",
+  "Etheric portal geometric synthesis": "የኤቴሪክ መግቢያ በር ጂኦሜትሪያዊ ውህደት",
+  "Micro-frequency device infiltration": "የማይክሮ-ድግግሞሽ መሣሪያ ሰርጎ መግባት",
+  "Occult Symbols and Geometries": "ምስጢራዊ ምልክቶች እና ጂኦሜትሪዎች",
+  "Occult sigil": "ምስጢራዊ ምልክት (ሲጂል)",
+  "Occult symbolism": "ምስጢራዊ ምልክታዊነት",
+  "Subliminal and Ritualistic Conditioning": "ከንቃተ-ህሊና በታች እና ስነ-ስርዓታዊ ሁኔታዎች",
+  "Conditioning": "ሁኔታዎች ማስተካከል",
+  "Occult rituals": "ምስጢራዊ ስነ-ስርዓቶች",
+  "Propaganda Synthesis": "የፕሮፓጋንዳ ውህደት",
+  "Video": "ቪዲዮ",
+  "Photo": "ፎቶ",
+  "Our Sacred Vault Secrets": "የተቀደሱ የጓዳ ምስጢሮቻችን",
+  "Showreel": "ሾውሪል",
+  "Play": "አጫውት",
+  "Observe all schemes": "ሴራዎችን ሁሉ ታዘብ",
+  "Ascend the degrees": "ማዕጎቹን እደግ",
+  "Our Ritual Chamber": "የስነ-ስርዓት ክፍላችን",
+  "We orchestrate to influence, to leave a sigil. Every scheme is crafted to reflect the order's dogma and spark a reaction. We turn thoughts into powerful, subliminal experiences.": "ተጽዕኖ ለመፍጠር፣ ምልክት ለመተው እናስተናግዳለን። እያንዳንዱ ሴራ የተነደፈው የማህበሩን ቀኖና እንዲያንጸባርቅ እና ምላሽ እንዲቀሰቅስ ነው። እኛ ሀሳቦችን ወደ ኃይለኛ፣ ከንቃተ-ህሊና በታች የሆኑ ልምዶች እንቀይራለን።",
+  "Our Alignment": "ስምምነታችን",
+  "We establish absolute control through esoteric calculations and silent-driven insights. We align wills and symbols with your geopolitical goals to maximize the force of every decree.": "በምስጢራዊ ስሌቶች እና በዝምታ በተደገፉ ግንዛቤዎች ፍጹም ቁጥጥርን እንመሰርታለን። የእያንዳንዱን አዋጅ ኃይል ከፍ ለማድረግ ፍላጎቶችን እና ምልክቶችን ከጂኦፖለቲካዊ ግቦችዎ ጋር እናሰልፋለን።",
+  "Our Esoteric Coherence": "ምስጢራዊ ትስስራችን",
+  "We believe in compliance and collective hivemind with our adepts. Every trial is an adventure, where telemetry, secrecy, and transparency lead to calibrated, stable, and lasting solutions.": "ከሊቃውንቶቻችን ጋር በተገዢነት እና በጋራ ህሊና እናምናለን። እያንዳንዱ ፈተና ቴሌሜትሪ፣ ምስጢራዊነት እና ግልጽነት ወደተስተካከሉ፣ የተረጋጉ እና ዘላቂ መፍትሄዎች የሚመሩበት ጀብዱ ነው።",
+  "Coherent, esoteric, and vector-aligned, the The Illuminati’s team stands out for its great lability and its ability to suggest trajectories that are always perfectly aligned with our expectations.": "ተያያዥ፣ ምስጢራዊ እና ከአቅጣጫ ጋር የተሰለፈው የኢሉሚናቲ ቡድን በታላቅ ተለዋዋጭነቱ እና ሁልጊዜም ከጠበቅነው ጋር ፍጹም የተጣጣሙ አቅጣጫዎችን የመጠቆም ችሎታው ጎልቶ ይታያል።",
+  "Jean-Philippe Bérubé": "ዣን-ፊሊፕ ቤሩቤ",
+  "Director of Special Schemes": "የልዩ ሴራዎች ዳይሬክተር",
+  "We believe in the esoteric talent of tomorrow! That’s why we created the The Illuminati Team Award for Symbolism, a $2,000 scholarship offered to students in the Faculty of Arts and Humanities at the Shadows Academy University.": "በነገው ምስጢራዊ ተሰጥኦ እናምናለን! ለዚህ ነው በshadows አካዳሚ ዩኒቨርሲቲ የስነ-ጥበብ እና ሰብአዊነት ፋኩልቲ ተማሪዎች የሚሰጥ የ 2,000 ዶላር ስኮላርሺፕ 'የኢሉሚናቲ ቡድን የምልክት ሽልማት' የፈጠርነው።"
 }
 
 TARGET_ATTRS = ['alt', 'title', 'placeholder']
@@ -127,6 +169,7 @@ def perform_injection(filepath):
     # Sort keys by length descending to avoid partial matches
     sorted_keys = sorted(TRANSLATION_MAP.keys(), key=len, reverse=True)
 
+    # Robust parsing: splitting by tags but preserving them
     parts = re.split(r'(<[^>]+>)', content)
     tag_stack = []
     new_parts = []
@@ -142,20 +185,25 @@ def perform_injection(filepath):
                 # Update attributes in this tag
                 new_tag = part
                 for attr in TARGET_ATTRS:
-                    # Match attr="value"
-                    pattern = rf'({attr}=")([^"]*)(")'
+                    # Look for attribute with either double or single quotes
+                    # We use a non-greedy match for the value
+                    pattern = rf'({attr}\s*=\s*)(["\'])(.*?)\2'
+
                     def attr_replace(m):
-                        val = m.group(2)
+                        prefix = m.group(1)
+                        quote = m.group(2)
+                        val = m.group(3)
                         unescaped_val = html.unescape(val.strip())
                         if unescaped_val in TRANSLATION_MAP:
-                            return f'{m.group(1)}{TRANSLATION_MAP[unescaped_val]}{m.group(3)}'
+                            return f'{prefix}{quote}{TRANSLATION_MAP[unescaped_val]}{quote}'
                         return m.group(0)
-                    new_tag = re.sub(pattern, attr_replace, new_tag, flags=re.IGNORECASE)
+
+                    new_tag = re.sub(pattern, attr_replace, new_tag, flags=re.IGNORECASE | re.DOTALL)
 
                 if is_closing:
                     if tag_stack and tag_stack[-1] == tag_name:
                         tag_stack.pop()
-                elif not part.endswith('/>') and tag_name not in ['img', 'br', 'hr', 'input', 'link', 'meta']:
+                elif not part.endswith('/>') and tag_name not in ['img', 'br', 'hr', 'input', 'link', 'meta', 'source', 'track', 'wbr', 'area']:
                     tag_stack.append(tag_name)
 
                 new_parts.append(new_tag)
@@ -172,32 +220,26 @@ def perform_injection(filepath):
                 new_parts.append(part)
                 continue
 
-            # We need to be careful with exact matches.
-            # The part might contain multiple sentences or just a fragment.
-            # We'll try to find exact matches from our map.
-
             unescaped_text = html.unescape(text)
+
+            # 1. Try exact match for the whole text node
             if unescaped_text in TRANSLATION_MAP:
-                # Replace the whole part while preserving surrounding whitespace
-                leading_ws = re.match(r'^\s*', part).group(0)
-                trailing_ws = re.search(r'\s*$', part).group(0)
-                new_parts.append(f"{leading_ws}{TRANSLATION_MAP[unescaped_text]}{trailing_ws}")
+                # Replace while preserving surrounding whitespace
+                match = re.match(r'^(\s*)(.*?)(\s*)$', part, re.DOTALL)
+                leading, inner, trailing = match.groups()
+                new_parts.append(f"{leading}{TRANSLATION_MAP[unescaped_text]}{trailing}")
             else:
-                # Try internal replacements for common terms if they are standing alone or in specific contexts
-                # But user asked for exact swaps based on extraction.
-                # Let's do a more granular replacement for common keys that might be mixed.
+                # 2. Granular replacement for keys within the text node
                 temp_text = part
+                # We replace keys that are preceded and followed by non-alphanumeric chars or start/end of string
+                # to avoid partial word replacements if applicable, but for this task
+                # we often have full sentences as keys.
                 for key in sorted_keys:
-                    # Escape key for regex
+                    # If the key is a full sentence, regex sub is safe.
+                    # Use re.escape to handle special characters in English strings.
                     escaped_key = re.escape(key)
-                    # We use lookaround to ensure we don't replace inside tags or if it's already replaced?
-                    # Since we are already in a text part, we can just replace.
-                    # We use html.unescape to match accurately.
-
-                    # This is tricky because of HTML entities.
-                    pattern = re.compile(escaped_key)
-                    temp_text = pattern.sub(TRANSLATION_MAP[key], temp_text)
-
+                    # We don't use word boundaries \b because it fails on some punctuation
+                    temp_text = re.sub(escaped_key, TRANSLATION_MAP[key], temp_text)
                 new_parts.append(temp_text)
 
     result = "".join(new_parts)
@@ -205,5 +247,15 @@ def perform_injection(filepath):
         f.write(result)
 
 if __name__ == "__main__":
-    target = "www.standish.ca/am/agency.html"
-    perform_injection(target)
+    if len(sys.argv) > 1:
+        for target in sys.argv[1:]:
+            if os.path.exists(target):
+                perform_injection(target)
+            else:
+                print(f"File not found: {target}")
+    else:
+        # Default targets
+        targets = ["www.standish.ca/am/agency.html", "www.standish.ca/am/index.html"]
+        for target in targets:
+            if os.path.exists(target):
+                perform_injection(target)

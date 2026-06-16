@@ -1,6 +1,6 @@
 from html.parser import HTMLParser
+import sys
 import os
-import html
 
 class TextExtractor(HTMLParser):
     def __init__(self):
@@ -24,7 +24,6 @@ class TextExtractor(HTMLParser):
         if self.tag_stack and self.tag_stack[-1] == tag.lower():
             self.tag_stack.pop()
         elif tag.lower() in self.tag_stack:
-            # Handle cases where tags might not be perfectly nested
             while self.tag_stack and self.tag_stack[-1] != tag.lower():
                 self.tag_stack.pop()
             if self.tag_stack:
@@ -34,7 +33,6 @@ class TextExtractor(HTMLParser):
         if not data.strip():
             return
 
-        # Check if we are inside any forbidden tags
         if any(tag in self.forbidden_tags for tag in self.tag_stack):
             return
 
@@ -54,7 +52,6 @@ def extract_text_from_file(filepath):
     parser = TextExtractor()
     parser.feed(content)
 
-    # Deduplicate while preserving order
     seen = set()
     for item in parser.extracted_items:
         if item not in seen:
@@ -62,6 +59,8 @@ def extract_text_from_file(filepath):
             seen.add(item)
 
 if __name__ == "__main__":
-    # Note: 'am/agency.html' was requested, but only 'en/agency.html' exists in the repository.
-    target_file = "www.standish.ca/en/agency.html"
+    if len(sys.argv) > 1:
+        target_file = sys.argv[1]
+    else:
+        target_file = "www.standish.ca/en/index.html"
     extract_text_from_file(target_file)
