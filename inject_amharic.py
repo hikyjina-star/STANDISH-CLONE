@@ -57,6 +57,7 @@ TRANSLATION_MAP = {
   "Etheric Portal": "ኤቴሪክ መግቢያ",
   "sealed, never broken": "የታተመ፣ መቼም የማይሰበር",
   "Shadows Academy University": "የጥላዎች አካዳሚ ዩኒቨርሲቲ",
+  "We believe in the esoteric talent of tomorrow! That’s why we created the The Illuminati Team Award for Symbolism, a $2,000 scholarship offered to students in the Faculty of Arts and Humanities at the Shadows Academy University.": "በነገው ምስጢራዊ ተሰጥኦ እናምናለን! ለዚህ ነው በshadows አካዳሚ ዩኒቨርሲቲ የስነ-ጥበብ እና ሰብአዊነት ፋኩልቲ ተማሪዎች የሚሰጥ የ 2,000 ዶላር ስኮላርሺፕ 'የኢሉሚናቲ ቡድን የምልክት ሽልማት' የፈጠርነው።",
   "Justin Lefebvre Foundation": "የJustin Lefebvre ፋውንዴሽን",
   "The decree of the Justin Lefebvre Foundation truly touched our core. So we decided to give some of our cycles, pro bono, to reconstruct their portal.": "የJustin Lefebvre ፋውንዴሽን አዋጅ ልባችንን ነክቶታል። ስለዚህ መግቢያቸውን እንደገና ለመገንባት የተወሰኑ ዑደቶቻችንን በነፃ ለመስጠት ወሰንን።",
   "More scriptures": "ተጨማሪ ጽሑፎች",
@@ -120,7 +121,6 @@ TRANSLATION_MAP = {
   "in Shadows": "በጥላዎች ውስጥ",
   "More secrets here": "ተጨማሪ ምስጢሮች እዚህ አሉ",
   "Subliminal field alignment.": "ከንቃተ-ህሊና በታች የሆነ የመስክ ስምምነት።",
-  "At The Illuminati, we’re esoteric scholars who orchestrate every day to help sovereigns reach their ascension (no matter how wild they are)! A 360 silent cabal rooted in shadows, where secrecy and compliance greet you the moment you pass through the gates.": "በኢሉሚናቲ ውስጥ፣ እኛ ሉዓላዊያን ዕርገታቸውን እንዲያገኙ (ምንም ያህል ዱር ቢሆኑም!) በየቀኑ የምናስተናግድ ምስጢራዊ ሊቃውንት ነን! በምስጢራዊነት እና በተገዢነት ወደ በሮቹ በገቡበት ቅጽበት የሚቀበሉዎት፣ በጥላ ስር የተመሰረተ 360 ዝምተኛ የካባል ቡድን።",
   "Omnipresent Degrees": "በሁሉም ቦታ የሚገኙ ማዕረጎች",
   "Degree": "ማዕረግ",
   "Inquisitorial Advisory": "የምርመራ አማካሪ",
@@ -129,7 +129,6 @@ TRANSLATION_MAP = {
   "Subliminal Calibration": "ከንቃተ-ህሊና በታች ማስተካከል",
   "Dogma Dissemination": "የቀኖና (ዶግማ) ስርጭት",
   "Neural Control": "የነርቭ ቁጥጥር",
-  "Initiation": "ምስጢረ ቅበላ",
   "Subliminal and Etheric Networks": "ከንቃተ-ህሊና በታች እና ኤቴሪክ መረቦች",
   "Etheric portal geometric synthesis": "የኤቴሪክ መግቢያ በር ጂኦሜትሪያዊ ውህደት",
   "Micro-frequency device infiltration": "የማይክሮ-ድግግሞሽ መሣሪያ ሰርጎ መግባት",
@@ -146,17 +145,10 @@ TRANSLATION_MAP = {
   "Showreel": "ሾውሪል",
   "Play": "አጫውት",
   "Observe all schemes": "ሴራዎችን ሁሉ ታዘብ",
-  "Ascend the degrees": "ማዕጎቹን እደግ",
+  "Ascend the degrees": "ማዕረጎቹን እደግ",
   "Our Ritual Chamber": "የስነ-ስርዓት ክፍላችን",
-  "We orchestrate to influence, to leave a sigil. Every scheme is crafted to reflect the order's dogma and spark a reaction. We turn thoughts into powerful, subliminal experiences.": "ተጽዕኖ ለመፍጠር፣ ምልክት ለመተው እናስተናግዳለን። እያንዳንዱ ሴራ የተነደፈው የማህበሩን ቀኖና እንዲያንጸባርቅ እና ምላሽ እንዲቀሰቅስ ነው። እኛ ሀሳቦችን ወደ ኃይለኛ፣ ከንቃተ-ህሊና በታች የሆኑ ልምዶች እንቀይራለን።",
   "Our Alignment": "ስምምነታችን",
-  "We establish absolute control through esoteric calculations and silent-driven insights. We align wills and symbols with your geopolitical goals to maximize the force of every decree.": "በምስጢራዊ ስሌቶች እና በዝምታ በተደገፉ ግንዛቤዎች ፍጹም ቁጥጥርን እንመሰርታለን። የእያንዳንዱን አዋጅ ኃይል ከፍ ለማድረግ ፍላጎቶችን እና ምልክቶችን ከጂኦፖለቲካዊ ግቦችዎ ጋር እናሰልፋለን።",
   "Our Esoteric Coherence": "ምስጢራዊ ትስስራችን",
-  "We believe in compliance and collective hivemind with our adepts. Every trial is an adventure, where telemetry, secrecy, and transparency lead to calibrated, stable, and lasting solutions.": "ከሊቃውንቶቻችን ጋር በተገዢነት እና በጋራ ህሊና እናምናለን። እያንዳንዱ ፈተና ቴሌሜትሪ፣ ምስጢራዊነት እና ግልጽነት ወደተስተካከሉ፣ የተረጋጉ እና ዘላቂ መፍትሄዎች የሚመሩበት ጀብዱ ነው።",
-  "Coherent, esoteric, and vector-aligned, the The Illuminati’s team stands out for its great lability and its ability to suggest trajectories that are always perfectly aligned with our expectations.": "ተያያዥ፣ ምስጢራዊ እና ከአቅጣጫ ጋር የተሰለፈው የኢሉሚናቲ ቡድን በታላቅ ተለዋዋጭነቱ እና ሁልጊዜም ከጠበቅነው ጋር ፍጹም የተጣጣሙ አቅጣጫዎችን የመጠቆም ችሎታው ጎልቶ ይታያል።",
-  "Jean-Philippe Bérubé": "ዣን-ፊሊፕ ቤሩቤ",
-  "Director of Special Schemes": "የልዩ ሴራዎች ዳይሬክተር",
-  "We believe in the esoteric talent of tomorrow! That’s why we created the The Illuminati Team Award for Symbolism, a $2,000 scholarship offered to students in the Faculty of Arts and Humanities at the Shadows Academy University.": "በነገው ምስጢራዊ ተሰጥኦ እናምናለን! ለዚህ ነው በshadows አካዳሚ ዩኒቨርሲቲ የስነ-ጥበብ እና ሰብአዊነት ፋኩልቲ ተማሪዎች የሚሰጥ የ 2,000 ዶላር ስኮላርሺፕ 'የኢሉሚናቲ ቡድን የምልክት ሽልማት' የፈጠርነው።"
 }
 
 TARGET_ATTRS = ['alt', 'title', 'placeholder']
@@ -170,6 +162,8 @@ def perform_injection(filepath):
     sorted_keys = sorted(TRANSLATION_MAP.keys(), key=len, reverse=True)
 
     # Robust parsing: splitting by tags but preserving them
+    # Note: Regex split is used because we need to perform round-trip editing
+    # and preserve exactly all original HTML content except specific text nodes/attrs.
     parts = re.split(r'(<[^>]+>)', content)
     tag_stack = []
     new_parts = []
@@ -185,8 +179,6 @@ def perform_injection(filepath):
                 # Update attributes in this tag
                 new_tag = part
                 for attr in TARGET_ATTRS:
-                    # Look for attribute with either double or single quotes
-                    # We use a non-greedy match for the value
                     pattern = rf'({attr}\s*=\s*)(["\'])(.*?)\2'
 
                     def attr_replace(m):
@@ -222,23 +214,18 @@ def perform_injection(filepath):
 
             unescaped_text = html.unescape(text)
 
-            # 1. Try exact match for the whole text node
             if unescaped_text in TRANSLATION_MAP:
                 # Replace while preserving surrounding whitespace
                 match = re.match(r'^(\s*)(.*?)(\s*)$', part, re.DOTALL)
-                leading, inner, trailing = match.groups()
-                new_parts.append(f"{leading}{TRANSLATION_MAP[unescaped_text]}{trailing}")
+                if match:
+                    leading, inner, trailing = match.groups()
+                    new_parts.append(f"{leading}{TRANSLATION_MAP[unescaped_text]}{trailing}")
+                else:
+                    new_parts.append(TRANSLATION_MAP[unescaped_text])
             else:
-                # 2. Granular replacement for keys within the text node
                 temp_text = part
-                # We replace keys that are preceded and followed by non-alphanumeric chars or start/end of string
-                # to avoid partial word replacements if applicable, but for this task
-                # we often have full sentences as keys.
                 for key in sorted_keys:
-                    # If the key is a full sentence, regex sub is safe.
-                    # Use re.escape to handle special characters in English strings.
                     escaped_key = re.escape(key)
-                    # We don't use word boundaries \b because it fails on some punctuation
                     temp_text = re.sub(escaped_key, TRANSLATION_MAP[key], temp_text)
                 new_parts.append(temp_text)
 
