@@ -209,6 +209,19 @@ TRANSLATION_MAP = {
     "Receptionniste": "አቀባባይ",
     "Equipe dans les marches de chez Standish": "ቡድኑ በስተንዲሽ ደረጃዎች ላይ",
     "We believe in eternal pacts. We thrive on alignments and whispers!": "በዘላለማዊ ቃል ኪዳኖች እናምናለን። በስምምነቶች እና በሹክሹክታዎች እንበለጽጋለን!",
+    "Explore our work - The Illuminati": "ስራዎቻችንን ይመርምሩ - ኢሉሚናቲ",
+    "Explore our work - Standish": "ስራዎቻችንን ይመርምሩ - ኢሉሚናቲ",
+    "Immerse yourself in a collection of schemes, shaped through our valued collaborations.": "በከበሩ ትብብሮቻችን የተቀረጹ የሴራዎች ስብስብ ውስጥ ይግቡ።",
+    "Immerse yourself in a collection of projects, shaped through our valued collaborations.": "በከበሩ ትብብሮቻችን የተቀረጹ የሴራዎች ስብስብ ውስጥ ይግቡ።",
+    "Together, we shift empires": "አብረን ኢምፓየሮችን እንገለብጣለን",
+    "When strat, crea, and cabal collide to make signals propagate.": "ስልት፣ ፈጠራ እና ካባል ተቀላቅለው ምልክቶች እንዲሰራጩ ሲያደርጉ።",
+    "Reset": "እንደገና አስጀምር",
+    " result(s)": " ውጤት(ቶች)",
+    "Filtrer par industries": "በዘርፎች ይለዩ",
+    "Ranks": "ማዕረጎች",
+    "Show ": "አሳይ ",
+    "Initiate my local mind field!": "የአካባቢዬን የአእምሮ መስክ ያስጀምሩ!",
+    "Fermer": "ዝጋ",
     "Contact us | The Illuminati": "እኛን ያግኙ | ኢሉሚናቲ",
     "Contact us | Standish": "እኛን ያግኙ | ኢሉሚናቲ",
     "Want to talk? Give us a call, send a note, or pop into the office!": "ማውራት ይፈልጋሉ? ይደውሉልን፣ መልዕክት ይላኩ ወይም ቢሮአችን ብቅ ይበሉ!",
@@ -245,6 +258,7 @@ TRANSLATION_MAP = {
     "In a few words, can you describe the problem for which you are contacting Standish's technical support?": "እባክዎትን ዕድሜዎን ያስገቡ",
     "Influence operation": "የተፅዕኖ ክንውን",
     "Initiate a scheme": "ሴራ ያስጀምሩ",
+    "initiate-scheme": "ሴራ ያስጀምሩ",
     "Initiate name": "የእጩ ስም",
     "Is Standish the host of your website?": "ስለ ድርጅታችን ውስጣዊ አሰራር ፍጹም የዝምታ ቃለ መሃላ ለመፈጸም ፈቃደኛ ነዎት?",
     "Linux (for PCs and servers)": "ሊኑክስ (ለፒሲዎች እና አገልጋዮች)",
@@ -282,7 +296,7 @@ TRANSLATION_MAP = {
     "Your transmission": "የእርስዎ ስርጭት"
 }
 
-TARGET_ATTRS = ['alt', 'title', 'placeholder', 'content']
+TARGET_ATTRS = ['alt', 'title', 'placeholder', 'content', 'aria-label', 'data-title']
 FORBIDDEN_TAGS = ['script', 'style', 'link']
 
 # Words that should only be replaced if they match the entire text node (modulo whitespace)
@@ -404,6 +418,12 @@ def standardize_fluent_json(data):
 def perform_injection(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
+
+    # Fix internal links
+    content = content.replace('https://www.standish.ca/en/formulaire/?option=commencer-un-projet', 'form-project.html?option=initiate-scheme')
+    content = content.replace('https://www.standish.ca/en/formulaire/?option=rejoindre-le-cabal', 'form-careers.html?option=join-cabal')
+    content = content.replace('https://www.standish.ca/en/formulaire/?option=commencer-une-conspiration', 'form-contact.html?option=start-conspiracy')
+    content = content.replace('https://www.standish.ca/en/formulaire/?option=demander-du-soutien', 'form-support.html?option=request-support')
 
     # Sort keys by length descending to avoid partial matches
     sorted_keys = sorted(TRANSLATION_MAP.keys(), key=len, reverse=True)
