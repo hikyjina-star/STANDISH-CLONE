@@ -108,7 +108,7 @@ TRANSLATION_MAP = {
     "Conspire with us": "ከእኛ ጋር ያሴሩ",
     "Scriptures. Dogma. Revelations.": "ጽሑፎች። ዶግማ። መገለጦች።",
     "Synchronize to receive our secret scriptures.": "ምስጢራዊ ጽሑፎቻችንን ለመቀበል ያመሳስሉ።",
-    "Initiation into the Secret Scriptures (ENG)": "ወደ ምስጢራዊ ጽሑፎች መግባት (ENG)",
+    "Initiation into the Secret Scriptures (ENG)": "ወደ ምስጢራዊ ጽሑፎች መግባት",
     "E-mail address": "የኢሜል አድራሻ",
     "Pact confirmed.": "ቃል ኪዳኑ ጸና።",
     "Let’s convene councils": "ምክር ቤቶችን እንጥራ",
@@ -209,12 +209,27 @@ TRANSLATION_MAP = {
     "Receptionniste": "አቀባባይ",
     "Equipe dans les marches de chez Standish": "ቡድኑ በስተንዲሽ ደረጃዎች ላይ",
     "We believe in eternal pacts. We thrive on alignments and whispers!": "በዘላለማዊ ቃል ኪዳኖች እናምናለን። በስምምነቶች እና በሹክሹክታዎች እንበለጽጋለን!",
+    "Contact us | The Illuminati": "እኛን ያግኙ | ኢሉሚናቲ",
+    "Contact us | Standish": "እኛን ያግኙ | ኢሉሚናቲ",
+    "Want to talk? Give us a call, send a note, or pop into the office!": "ማውራት ይፈልጋሉ? ይደውሉልን፣ መልዕክት ይላኩ ወይም ቢሮአችን ብቅ ይበሉ!",
+    "3720, boul. Industriel, bureau 101, Shadows (Québec) J1L 1N6": "3720, ኢንዱስትሪ መንገድ, ቢሮ 101, ጥላዎች (ኩቤክ) J1L 1N6",
+    "3720 Bd Industriel, Bureau 101": "3720, ኢንዱስትሪ መንገድ, ቢሮ 101",
+    "customer support": "የሊቃውንት ድጋፍ",
+    "standish": "ኢሉሚናቲ",
+    "Sherbrooke": "ጥላዎች",
+    "Québec": "ኩቤክ",
+    "Shadows (Québec)": "ጥላዎች (ኩቤክ)",
+    "The Illuminati is a 360 order from Shadows, helping sigils with portals, conditioning, etheric networks, occult symbolism and propaganda synthesis!": "ኢሉሚናቲ በጥላዎች ውስጥ የሚገኝ ባለ 360 ዲግሪ ማህበር ሲሆን፣ ምልክቶችን (ሲጂሎችን) በመግቢያዎች፣ በሁኔታዎች ማስተካከል፣ በኤቴሪክ መረቦች፣ በምስጢራዊ ምልክቶች እና በፕሮፓጋንዳ ውህደት ይረዳል።",
+    "Standish is a 360 agency from Sherbrooke, helping brands with websites, marketing, digital experiences, graphic design and content production!": "ኢሉሚናቲ በጥላዎች ውስጥ የሚገኝ ባለ 360 ዲግሪ ማህበር ሲሆን፣ ምልክቶችን (ሲጂሎችን) በመግቢያዎች፣ በሁኔታዎች ማስተካከል፣ በኤቴሪክ መረቦች፣ በምስጢራዊ ምልክቶች እና በፕሮፓጋንዳ ውህደት ይረዳል።",
     "Select -": "ይምረጡ -",
     "Select an option -": "ምርጫ ይምረጡ -",
     "Select-": "ይምረጡ-",
     "Cabal affiliation": "የአባት ስም",
     "Cipher contact": "የምስጢር ኮድ አድራሻ (Email)",
     "Contact the Cabal": "ካባሉን ያግኙ",
+    "Standish": "ኢሉሚናቲ",
+    "Standish Communications": "ኢሉሚናቲ",
+    "Communications Standish Inc.": "ኢሉሚናቲ",
     "Describe your scheme": "ሴራዎን ያብራሩ",
     "Encrypted channel": "የተመሰጠረ መስመር",
     "Enter the Order": "ወደ ሥርዓቱ ይግቡ",
@@ -267,8 +282,8 @@ TRANSLATION_MAP = {
     "Your transmission": "የእርስዎ ስርጭት"
 }
 
-TARGET_ATTRS = ['alt', 'title', 'placeholder']
-FORBIDDEN_TAGS = ['script', 'style', 'head', 'meta', 'link']
+TARGET_ATTRS = ['alt', 'title', 'placeholder', 'content']
+FORBIDDEN_TAGS = ['script', 'style', 'link']
 
 # Words that should only be replaced if they match the entire text node (modulo whitespace)
 EXACT_MATCH_ONLY = ["Yes", "No", "Order", "Team", "Index", "SEND"]
@@ -396,6 +411,7 @@ def perform_injection(filepath):
     parts = re.split(r'(<[^>]+>)', content)
     tag_stack = []
     new_parts = []
+    current_script_type = None
 
     for part in parts:
         if part.startswith('<'):
@@ -403,6 +419,12 @@ def perform_injection(filepath):
             if tag_match:
                 is_closing = tag_match.group(1) == '/'
                 tag_name = tag_match.group(2).lower()
+
+                if not is_closing and tag_name == 'script':
+                    type_match = re.search(r'type=["\'](.*?)["\']', part)
+                    current_script_type = type_match.group(1) if type_match else None
+                elif is_closing and tag_name == 'script':
+                    current_script_type = None
 
                 new_tag = part
                 for attr in TARGET_ATTRS:
@@ -429,11 +451,11 @@ def perform_injection(filepath):
             else:
                 new_parts.append(part)
         else:
-            if tag_stack and tag_stack[-1] == 'script' and 'fluent_forms_global_var' in part:
-                # First, parse JSON if possible to apply restructuring
-                json_match = re.search(r'(var fluent_forms_global_var_1\s*=\s*)(.*?);', part, re.DOTALL)
-                if json_match:
-                    prefix = json_match.group(1)
+            if tag_stack and tag_stack[-1] == 'script':
+                if 'fluent_forms_global_var' in part:
+                    json_match = re.search(r'(var fluent_forms_global_var_1\s*=\s*)(.*?);', part, re.DOTALL)
+                    if json_match:
+                        prefix = json_match.group(1)
                     json_str = json_match.group(2)
                     try:
                         data = json.loads(json_str)
@@ -446,7 +468,9 @@ def perform_injection(filepath):
                             'multi_select_hint', 'single_select_hint', 'invalid_prompt',
                             'default_placeholder', 'text', 'skip_btn', 'message', 'uploading_txt',
                             'upload_completed_txt', 'unknown_error_txt', 'request_error_txt',
-                            'previousMonth', 'nextMonth', 'scrollTitle', 'toggleTitle'
+                            'previousMonth', 'nextMonth', 'scrollTitle', 'toggleTitle',
+                            'description', 'name', 'alternateName', 'legalName', 'headline', 'contactType',
+                            'addressLocality', 'addressRegion'
                         ]
 
                         # Convert back to JSON and then use string replacement for translations
@@ -474,9 +498,36 @@ def perform_injection(filepath):
                     except:
                         pass # Fallback to original logic if JSON parse fails
 
-                # Fallback translation logic for scripts
+                elif current_script_type == 'application/ld+json':
+                    try:
+                        data = json.loads(part)
+                        json_str_processed = json.dumps(data, ensure_ascii=False)
+
+                        whitelisted_keys = [
+                            'description', 'name', 'alternateName', 'legalName', 'headline',
+                            'contactType', 'addressLocality', 'addressRegion', 'caption', 'streetAddress'
+                        ]
+
+                        for key in whitelisted_keys:
+                            pattern = rf'("{key}"\s*:\s*)(")(.*?)(")'
+                            def kv_replacer(m):
+                                p, q_o, v, q_c = m.groups()
+                                nv = v
+                                for t_key in sorted_keys:
+                                    t_p = re.escape(t_key)
+                                    if t_key[0].isalnum(): t_p = r'\b' + t_p
+                                    if t_key[-1].isalnum(): t_p = t_p + r'\b'
+                                    nv = re.sub(t_p, TRANSLATION_MAP[t_key], nv)
+                                return f"{p}{q_o}{nv}{q_c}"
+                            json_str_processed = re.sub(pattern, kv_replacer, json_str_processed)
+                        new_parts.append(json_str_processed)
+                        continue
+                    except:
+                        pass
+
+                # Fallback/Generic script translation for specific keys
                 temp_text = part
-                whitelisted_keys = ['label', 'title', 'placeholder']
+                whitelisted_keys = ['label', 'title', 'placeholder', 'description', 'name', 'streetAddress', 'caption']
                 for key in whitelisted_keys:
                     pattern = rf'("{key}"\s*:\s*)(")(.*?)(")'
                     def kv_replacer(m):
