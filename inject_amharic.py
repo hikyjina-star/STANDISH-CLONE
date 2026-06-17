@@ -207,11 +207,70 @@ TRANSLATION_MAP = {
     "Let the rituals begin": "ስነ-ስርዓቶቹ ይጀምሩ",
     "Receptionniste": "አቀባባይ",
     "Equipe dans les marches de chez Standish": "ቡድኑ በስተንዲሽ ደረጃዎች ላይ",
-    "We believe in eternal pacts. We thrive on alignments and whispers!": "በዘላለማዊ ቃል ኪዳኖች እናምናለን። በስምምነቶች እና በሹክሹክታዎች እንበለጽጋለን!"
+    "We believe in eternal pacts. We thrive on alignments and whispers!": "በዘላለማዊ ቃል ኪዳኖች እናምናለን። በስምምነቶች እና በሹክሹክታዎች እንበለጽጋለን!",
+    "Select -": "ይምረጡ -",
+    "Select an option -": "ምርጫ ይምረጡ -",
+    "Select-": "ይምረጡ-",
+    "Cabal affiliation": "የካባል ቁርኝት",
+    "Cipher contact": "የምስጢር ኮድ አድራሻ",
+    "Contact the Cabal": "ካባሉን ያግኙ",
+    "Describe your scheme": "ሴራዎን ያብራሩ",
+    "Encrypted channel": "የተመሰጠረ መስመር",
+    "Enter the Order": "ወደ ሥርዓቱ ይግቡ",
+    "Etheric network weaving": "የኤቴሪክ መረብ ሽመና",
+    "Etheric portal": "የኤቴሪክ መግቢያ",
+    "Explorer / Edge": "ኤክስፕሎረር / ኤጅ",
+    "Fully devoted": "ሙሉ በሙሉ የተሰጡ",
+    "Google Chrome": "ጉግል ክሮም",
+    "Hours of devotion": "የቅንዓት ሰዓታት",
+    "I don't know": "አላውቅም",
+    "If possible, attach a screenshot of the problem encountered.": "ከተቻለ የገጠመዎትን ችግር የገጽ ምስል (screenshot) አያይዙ።",
+    "If possible, enter the URL where the problem occurred.": "ከተቻለ ችግሩ የተከሰተበትን ዩአርኤል (URL) ያስገቡ።",
+    "In a few words, can you describe the problem for which you are contacting Standish's technical support?": "በጥቂት ቃላት፣ እስታንዲሽን ለቴክኒክ ድጋፍ ያገኙበትን ችግር ሊያብራሩ ይችላሉ?",
+    "Influence operation": "የተፅዕኖ ክንውን",
+    "Initiate a scheme": "ሴራ ያስጀምሩ",
+    "Initiate name": "የእጩ ስም",
+    "Is Standish the host of your website?": "እስታንዲሽ የድህረ ገጽዎ አስተናጋጅ (host) ነው?",
+    "Linux (for PCs and servers)": "ሊኑክስ (ለፒሲዎች እና አገልጋዮች)",
+    "Mac OS (for Apple computers)": "ማክ ኦኤስ (ለአፕል ኮምፒውተሮች)",
+    "Mass consciousness infiltration": "የህዝብ ንቃተ-ህሊና ሰርጎ-ገብነት",
+    "Mozilla / Firefox": "ሞዚላ / ፋየርፎክስ",
+    "No": "አይደለም",
+    "Occult discipline": "ምስጢራዊ ዲሲፕሊን",
+    "Occult documentation": "ምስጢራዊ ሰነዶች",
+    "Opera": "ኦፔራ",
+    "Other rites": "ሌሎች ስርዓቶች",
+    "Partially bound": "በከፊል የታሰረ",
+    "Pledge your allegiance": "ታማኝነትዎን ይማሉ",
+    "SEND": "ላክ",
+    "Sacred blueprint": "የተቀደሰ ንድፍ",
+    "Sacred geometry": "የተቀደሰ ጂኦሜትሪ",
+    "Safari": "ሳፋሪ",
+    "Scheme classification": "የሴራ ምደባ",
+    "Scheme orchestration": "የሴራ ቅንብር",
+    "Scripture and cipher": "ጽሑፍ እና ምስጢር",
+    "Scrolls of your deeds": "የድርጊቶችዎ ጥቅልል",
+    "Seek initiation": "ምስጢረ ቅበላን ይፈልጉ",
+    "Sigil identity": "የሲጂል ማንነት",
+    "Send Button": "የላክ ቁልፍ",
+    "Summon a herald": "አዋጅ ነጋሪ ጥራ",
+    "Symbol craft": "የምልክት ጥበብ",
+    "Unix (for servers)": "ዩኒክስ (ለአገልጋዮች)",
+    "Wandering adept": "ተቅበዝባዥ ሊቅ",
+    "Website": "ድህረ ገጽ",
+    "What do you seek from the Order?": "ከሥርዓቱ ምን ይፈልጋሉ?",
+    "What is the browser used?": "ጥቅም ላይ የዋለው አሳሽ (browser) ምንድነው?",
+    "What is the operating system used?": "ጥቅም ላይ የዋለው የስርዓተ ክወና (operating system) ምንድነው?",
+    "Windows (for PC)": "ዊንዶውስ (ለፒሲ)",
+    "Yes": "አዎ",
+    "Your transmission": "የእርስዎ ስርጭት"
 }
 
 TARGET_ATTRS = ['alt', 'title', 'placeholder']
 FORBIDDEN_TAGS = ['script', 'style', 'head', 'meta', 'link']
+
+# Words that should only be replaced if they match the entire text node (modulo whitespace)
+EXACT_MATCH_ONLY = ["Yes", "No", "Order", "Team", "Index", "SEND"]
 
 def perform_injection(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -256,6 +315,37 @@ def perform_injection(filepath):
             else:
                 new_parts.append(part)
         else:
+            if tag_stack and tag_stack[-1] == 'script' and 'fluent_forms_global_var' in part:
+                whitelisted_keys = [
+                    'label', 'title', 'placeholder', 'requiredMsg', 'errorMessage',
+                    'global_message', 'confirm_btn', 'continue', 'keyboard_instruction',
+                    'multi_select_hint', 'single_select_hint', 'invalid_prompt',
+                    'default_placeholder', 'text', 'skip_btn', 'message', 'uploading_txt',
+                    'upload_completed_txt', 'unknown_error_txt', 'request_error_txt',
+                    'previousMonth', 'nextMonth', 'scrollTitle', 'toggleTitle'
+                ]
+
+                temp_text = part
+                for key in whitelisted_keys:
+                    # Match "key":"value" or 'key':'value'
+                    pattern = rf'("{key}"\s*:\s*)(")(.*?)(")'
+                    def kv_replacer(m):
+                        prefix, quote_open, val, quote_close = m.groups()
+                        new_val = val
+                        for t_key in sorted_keys:
+                            t_pattern = re.escape(t_key)
+                            if t_key[0].isalnum(): t_pattern = r'\b' + t_pattern
+                            if t_key[-1].isalnum(): t_pattern = t_pattern + r'\b'
+                            new_val = re.sub(t_pattern, TRANSLATION_MAP[t_key], new_val)
+                        return f"{prefix}{quote_open}{new_val}{quote_close}"
+                    temp_text = re.sub(pattern, kv_replacer, temp_text)
+
+                    pattern_s = rf"('{key}'\s*:\s*)(')(.*?)(')"
+                    temp_text = re.sub(pattern_s, kv_replacer, temp_text)
+
+                new_parts.append(temp_text)
+                continue
+
             if tag_stack and any(tag in FORBIDDEN_TAGS for tag in tag_stack):
                 new_parts.append(part)
                 continue
@@ -277,8 +367,12 @@ def perform_injection(filepath):
             else:
                 temp_text = part
                 for key in sorted_keys:
-                    escaped_key = re.escape(key)
-                    temp_text = re.sub(escaped_key, TRANSLATION_MAP[key], temp_text)
+                    if key in EXACT_MATCH_ONLY:
+                        continue
+                    pattern = re.escape(key)
+                    if key[0].isalnum(): pattern = r'\b' + pattern
+                    if key[-1].isalnum(): pattern = pattern + r'\b'
+                    temp_text = re.sub(pattern, TRANSLATION_MAP[key], temp_text)
                 new_parts.append(temp_text)
 
     result = "".join(new_parts)
