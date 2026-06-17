@@ -3,6 +3,7 @@ import os
 import html
 import sys
 import shutil
+import json
 
 # Comprehensive deduplicated Translation Map
 TRANSLATION_MAP = {
@@ -211,8 +212,8 @@ TRANSLATION_MAP = {
     "Select -": "ይምረጡ -",
     "Select an option -": "ምርጫ ይምረጡ -",
     "Select-": "ይምረጡ-",
-    "Cabal affiliation": "የካባል ቁርኝት",
-    "Cipher contact": "የምስጢር ኮድ አድራሻ",
+    "Cabal affiliation": "የአባት ስም",
+    "Cipher contact": "የምስጢር ኮድ አድራሻ (Email)",
     "Contact the Cabal": "ካባሉን ያግኙ",
     "Describe your scheme": "ሴራዎን ያብራሩ",
     "Encrypted channel": "የተመሰጠረ መስመር",
@@ -224,13 +225,13 @@ TRANSLATION_MAP = {
     "Google Chrome": "ጉግል ክሮም",
     "Hours of devotion": "የቅንዓት ሰዓታት",
     "I don't know": "አላውቅም",
-    "If possible, attach a screenshot of the problem encountered.": "ከተቻለ የገጠመዎትን ችግር የገጽ ምስል (screenshot) አያይዙ።",
-    "If possible, enter the URL where the problem occurred.": "ከተቻለ ችግሩ የተከሰተበትን ዩአርኤል (URL) ያስገቡ።",
-    "In a few words, can you describe the problem for which you are contacting Standish's technical support?": "በጥቂት ቃላት፣ እስታንዲሽን ለቴክኒክ ድጋፍ ያገኙበትን ችግር ሊያብራሩ ይችላሉ?",
+    "If possible, attach a screenshot of the problem encountered.": "እባክዎትን ጉርድ ፎቶ ያስገቡ",
+    "If possible, enter the URL where the problem occurred.": "ጾታ / Gender",
+    "In a few words, can you describe the problem for which you are contacting Standish's technical support?": "እባክዎትን ዕድሜዎን ያስገቡ",
     "Influence operation": "የተፅዕኖ ክንውን",
     "Initiate a scheme": "ሴራ ያስጀምሩ",
     "Initiate name": "የእጩ ስም",
-    "Is Standish the host of your website?": "እስታንዲሽ የድህረ ገጽዎ አስተናጋጅ (host) ነው?",
+    "Is Standish the host of your website?": "ስለ ድርጅታችን ውስጣዊ አሰራር ፍጹም የዝምታ ቃለ መሃላ ለመፈጸም ፈቃደኛ ነዎት?",
     "Linux (for PCs and servers)": "ሊኑክስ (ለፒሲዎች እና አገልጋዮች)",
     "Mac OS (for Apple computers)": "ማክ ኦኤስ (ለአፕል ኮምፒውተሮች)",
     "Mass consciousness infiltration": "የህዝብ ንቃተ-ህሊና ሰርጎ-ገብነት",
@@ -259,8 +260,8 @@ TRANSLATION_MAP = {
     "Wandering adept": "ተቅበዝባዥ ሊቅ",
     "Website": "ድህረ ገጽ",
     "What do you seek from the Order?": "ከሥርዓቱ ምን ይፈልጋሉ?",
-    "What is the browser used?": "ጥቅም ላይ የዋለው አሳሽ (browser) ምንድነው?",
-    "What is the operating system used?": "ጥቅም ላይ የዋለው የስርዓተ ክወና (operating system) ምንድነው?",
+    "What is the browser used?": "ከኢሉሚናቲ የሚፈልጉት የአገልግሎት ዓይነት",
+    "What is the operating system used?": "የሥራ ዓይነት",
     "Windows (for PC)": "ዊንዶውስ (ለፒሲ)",
     "Yes": "አዎ",
     "Your transmission": "የእርስዎ ስርጭት"
@@ -271,6 +272,119 @@ FORBIDDEN_TAGS = ['script', 'style', 'head', 'meta', 'link']
 
 # Words that should only be replaced if they match the entire text node (modulo whitespace)
 EXACT_MATCH_ONLY = ["Yes", "No", "Order", "Team", "Index", "SEND"]
+
+def standardize_fluent_json(data):
+    questions = data["form"]["questions"]
+
+    def get_q(qid):
+        for q in questions:
+            if q.get("id") == qid:
+                return q
+        return None
+
+    # 1. option
+    q1 = get_q("option")
+    if q1:
+        q1["options"] = [opt for opt in q1["options"] if opt["label"] not in ["ሴራ ያስጀምሩ", "አዋጅ ነጋሪ ጥራ", "Initiate a scheme", "Summon a herald"]]
+        q1["conditional_logics"] = []
+
+    # 2. nom_complet
+    q2 = get_q("nom_complet")
+    if q2: q2["conditional_logics"] = []
+
+    # 3. Father's Name (was Entreprise__Support_technique)
+    q3 = get_q("Entreprise__Support_technique")
+    if q3:
+        q3["title"] = "የአባት ስም"
+        q3["conditional_logics"] = []
+
+    # 4. Email
+    q4 = get_q("courriel")
+    if q4:
+        q4["title"] = "የምስጢር ኮድ አድራሻ (Email)"
+        q4["conditional_logics"] = []
+
+    # 5. Phone
+    q5 = get_q("telephone")
+    if q5:
+        q5["conditional_logics"] = []
+        itl_str = q5.get("phone_settings", {}).get("itlOptions", "{}")
+        itl = json.loads(itl_str)
+        itl["onlyCountries"] = ["ET", "CA", "US"]
+        itl["initialCountry"] = "ET"
+        q5["phone_settings"]["itlOptions"] = json.dumps(itl)
+
+    # 6. Oath
+    q6 = get_q("Standish_est_il_lhebergeur_de_votre_site_Web___Support_technique")
+    if q6:
+        q6["title"] = "ስለ ድርጅታችን ውስጣዊ አሰራር ፍጹም የዝምታ ቃለ መሃላ ለመፈጸም ፈቃደኛ ነዎት?"
+        q6["conditional_logics"] = []
+        q6["options"] = [
+            {"label": "አዎ", "value": "Yes", "image": "", "id": 0},
+            {"label": "አይደለም", "value": "No", "image": "", "id": 1}
+        ]
+
+    # 8. Service (Navigateur___Probleme_avec_site_web)
+    q8 = get_q("Navigateur___Probleme_avec_site_web")
+    if q8:
+        q8["title"] = "ከኢሉሚናቲ የሚፈልጉት የአገልግሎት ዓይነት"
+        q8["conditional_logics"] = []
+        q8["options"] = [
+            {"label": "ገንዘብ / Money", "value": "Money", "id": 0},
+            {"label": "የፖለቲካ ሥልጣን / Political power", "value": "Political power", "id": 1},
+            {"label": "በኢሉሚናቲ ውስጥ ካሉ ልሂቃን ጋር ግንኙነት / Connections with Elites within the illuminati", "value": "Connections with Elites", "id": 2}
+        ]
+
+    # 9. Work (Systeme_exploitation___Probleme_avec_site_web)
+    q9 = get_q("Systeme_exploitation___Probleme_avec_site_web")
+    if q9:
+        q9["title"] = "የሥራ ዓይነት"
+        q9["conditional_logics"] = []
+        q9["options"] = [
+            {"label": "ንግድ / Business, Trade, or Commerce", "value": "Business", "id": 0},
+            {"label": "ጤና ባለሙያ / Healthcare Professional", "value": "Healthcare", "id": 1},
+            {"label": "ፖለቲከኛ (መሪ) / Politician", "value": "Politician", "id": 2},
+            {"label": "ኢንጂነር / Engineer", "value": "Engineer", "id": 3},
+            {"label": "ሪል እስቴት / Real Estate", "value": "Real Estate", "id": 4},
+            {"label": "ሹፌር / Driver", "value": "Driver", "id": 5}
+        ]
+
+    # 10. Gender (Url_probleme___Probleme_avec_site_web)
+    q10 = get_q("Url_probleme___Probleme_avec_site_web")
+    if q10:
+        q10["title"] = "ጾታ / Gender"
+        q10["type"] = "FlowFormDropdownType"
+        q10["ff_input_type"] = "select"
+        q10["placeholder"] = "- ምርጫ ይምረጡ -"
+        q10["conditional_logics"] = []
+        q10["options"] = [
+            {"label": "ወንድ / Male", "value": "Male", "id": 0},
+            {"label": "ሴት / Female", "value": "Female", "id": 1}
+        ]
+
+    # 11. Photo (Capture_ecran___Probleme_avec_site_web)
+    q11 = get_q("Capture_ecran___Probleme_avec_site_web")
+    if q11:
+        q11["title"] = "እባክዎትን ጉርድ ፎቶ ያስገቡ"
+        q11["conditional_logics"] = []
+
+    # 12. Age (Description___Probleme_avec_site_web)
+    q12 = get_q("Description___Probleme_avec_site_web")
+    if q12:
+        q12["title"] = "እባክዎትን ዕድሜዎን ያስገቡ"
+        q12["type"] = "FlowFormNumberType"
+        q12["ff_input_type"] = "input_number"
+        q12["conditional_logics"] = []
+        if "validationRules" not in q12: q12["validationRules"] = {}
+        q12["validationRules"]["min"] = {"value": 18, "message": "Minimum age is 18"}
+        q12["validationRules"]["max"] = {"value": 55, "message": "Maximum age is 55"}
+        q12["min"] = 18
+        q12["max"] = 55
+        q12["placeholder"] = ""
+
+    new_questions = [q for q in [q1, q2, q3, q4, q5, q6, q8, q9, q10, q11, q12] if q]
+    data["form"]["questions"] = new_questions
+    return data
 
 def perform_injection(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -316,33 +430,65 @@ def perform_injection(filepath):
                 new_parts.append(part)
         else:
             if tag_stack and tag_stack[-1] == 'script' and 'fluent_forms_global_var' in part:
-                whitelisted_keys = [
-                    'label', 'title', 'placeholder', 'requiredMsg', 'errorMessage',
-                    'global_message', 'confirm_btn', 'continue', 'keyboard_instruction',
-                    'multi_select_hint', 'single_select_hint', 'invalid_prompt',
-                    'default_placeholder', 'text', 'skip_btn', 'message', 'uploading_txt',
-                    'upload_completed_txt', 'unknown_error_txt', 'request_error_txt',
-                    'previousMonth', 'nextMonth', 'scrollTitle', 'toggleTitle'
-                ]
+                # First, parse JSON if possible to apply restructuring
+                json_match = re.search(r'(var fluent_forms_global_var_1\s*=\s*)(.*?);', part, re.DOTALL)
+                if json_match:
+                    prefix = json_match.group(1)
+                    json_str = json_match.group(2)
+                    try:
+                        data = json.loads(json_str)
+                        data = standardize_fluent_json(data)
 
+                        # Now apply translations to the whitelisted keys in the object
+                        whitelisted_keys = [
+                            'label', 'title', 'placeholder', 'requiredMsg', 'errorMessage',
+                            'global_message', 'confirm_btn', 'continue', 'keyboard_instruction',
+                            'multi_select_hint', 'single_select_hint', 'invalid_prompt',
+                            'default_placeholder', 'text', 'skip_btn', 'message', 'uploading_txt',
+                            'upload_completed_txt', 'unknown_error_txt', 'request_error_txt',
+                            'previousMonth', 'nextMonth', 'scrollTitle', 'toggleTitle'
+                        ]
+
+                        # Convert back to JSON and then use string replacement for translations
+                        # to keep the word boundary logic.
+                        # (Actually, better to iterate the object recursively but string replacement is fine here)
+
+                        json_str_processed = json.dumps(data, ensure_ascii=False)
+
+                        for key in whitelisted_keys:
+                            pattern = rf'("{key}"\s*:\s*)(")(.*?)(")'
+                            def kv_replacer(m):
+                                p, q_o, v, q_c = m.groups()
+                                nv = v
+                                for t_key in sorted_keys:
+                                    t_p = re.escape(t_key)
+                                    if t_key[0].isalnum(): t_p = r'\b' + t_p
+                                    if t_key[-1].isalnum(): t_p = t_p + r'\b'
+                                    nv = re.sub(t_p, TRANSLATION_MAP[t_key], nv)
+                                return f"{p}{q_o}{nv}{q_c}"
+                            json_str_processed = re.sub(pattern, kv_replacer, json_str_processed)
+
+                        new_part = part[:json_match.start(2)] + json_str_processed + part[json_match.end(2):]
+                        new_parts.append(new_part)
+                        continue
+                    except:
+                        pass # Fallback to original logic if JSON parse fails
+
+                # Fallback translation logic for scripts
                 temp_text = part
+                whitelisted_keys = ['label', 'title', 'placeholder']
                 for key in whitelisted_keys:
-                    # Match "key":"value" or 'key':'value'
                     pattern = rf'("{key}"\s*:\s*)(")(.*?)(")'
                     def kv_replacer(m):
-                        prefix, quote_open, val, quote_close = m.groups()
-                        new_val = val
+                        p, q_o, v, q_c = m.groups()
+                        nv = v
                         for t_key in sorted_keys:
-                            t_pattern = re.escape(t_key)
-                            if t_key[0].isalnum(): t_pattern = r'\b' + t_pattern
-                            if t_key[-1].isalnum(): t_pattern = t_pattern + r'\b'
-                            new_val = re.sub(t_pattern, TRANSLATION_MAP[t_key], new_val)
-                        return f"{prefix}{quote_open}{new_val}{quote_close}"
+                            t_p = re.escape(t_key)
+                            if t_key[0].isalnum(): t_p = r'\b' + t_p
+                            if t_key[-1].isalnum(): t_p = t_p + r'\b'
+                            nv = re.sub(t_p, TRANSLATION_MAP[t_key], nv)
+                        return f"{p}{q_o}{nv}{q_c}"
                     temp_text = re.sub(pattern, kv_replacer, temp_text)
-
-                    pattern_s = rf"('{key}'\s*:\s*)(')(.*?)(')"
-                    temp_text = re.sub(pattern_s, kv_replacer, temp_text)
-
                 new_parts.append(temp_text)
                 continue
 
@@ -378,6 +524,17 @@ def perform_injection(filepath):
     result = "".join(new_parts)
     # Ensure lang="am"
     result = re.sub(r'<html lang="en-CA"', '<html lang="am"', result)
+
+    # Standardize raw HTML replacements if they exist outside scripts
+    result = result.replace("የካባል ቁርኝት", "የአባት ስም")
+    result = re.sub(r"የምስጢር ኮድ አድራሻ(?!\s*\(Email\))", "የምስጢር ኮድ አድራሻ (Email)", result)
+    result = result.replace("እስታንዲሽ የድህረ ገጽዎ አስተናጋጅ (host) ነው?", "ስለ ድርጅታችን ውስጣዊ አሰራር ፍጹም የዝምታ ቃለ መሃላ ለመፈጸም ፈቃደኛ ነዎት?")
+    result = result.replace("ጥቅም ላይ የዋለው አሳሽ (browser) ምንድነው?", "ከኢሉሚናቲ የሚፈልጉት የአገልግሎት ዓይነት")
+    result = result.replace("ጥቅም ላይ የዋለው የስርዓተ ክወና (operating system) ምንድነው?", "የሥራ ዓይነት")
+    result = result.replace("ከተቻለ ችግሩ የተከሰተበትን ዩአርኤል (URL) ያስገቡ።", "ጾታ / Gender")
+    result = result.replace("ከተቻለ የገጠመዎትን ችግር የገጽ ምስል (screenshot) አያይዙ።", "እባክዎትን ጉርድ ፎቶ ያስገቡ")
+    result = result.replace("በጥቂት ቃላት፣ እስታንዲሽን ለቴክኒክ ድጋፍ ያገኙበትን ችግር ሊያብራሩ ይችላሉ?", "እባክዎትን ዕድሜዎን ያስገቡ")
+    result = re.sub(r'<div class="ff-el-group">.*?<label.*?>ድህረ ገጽ</label>.*?</div>', '', result, flags=re.DOTALL)
 
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(result)
